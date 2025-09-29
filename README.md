@@ -1,4 +1,4 @@
-# Next.js Shopping Cart Application
+# React  Cart Application
 
 This is a simple shopping cart application built with Next.js, demonstrating modern frontend development practices including state management with Zustand and UI creation with Tailwind CSS and shadcn/ui. This project was created to fulfillgi a project assignment by Skillroom.
 
