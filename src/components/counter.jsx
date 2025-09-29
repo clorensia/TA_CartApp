@@ -31,3 +31,4 @@ const Counter = ({ quantity, onIncrement, onDecrement }) => {
 };
 
 export default Counter;
+
