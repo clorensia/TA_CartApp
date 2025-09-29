@@ -1,22 +1,22 @@
 'use client'
 
 import Image from 'next/image';
-import useCartStore from '@/store/cartStore';
 import { Card, CardContent } from "@/components/ui/card";
 import Counter from './Counter';
+import useCartStore from '@/store/cartStore';
 
 const CartItem = ({ product }) => {
-  // Get state and actions from the Zustand store
-  const { cart, incrementQuantity, decrementQuantity, addToCart } = useCartStore((state) => ({
-    cart: state.cart,
-    incrementQuantity: state.incrementQuantity,
-    decrementQuantity: state.decrementQuantity,
-    addToCart: state.addToCart,
-  }));
+  // Select actions atomically. This is the most performant way
+  // and avoids creating new objects in selectors.
+  const incrementQuantity = useCartStore((state) => state.incrementQuantity);
+  const decrementQuantity = useCartStore((state) => state.decrementQuantity);
+  const addToCart = useCartStore((state) => state.addToCart);
 
-  // Find this specific item in the cart to get its quantity
-  const cartItem = cart.find(item => item.id === product.id);
-  const quantity = cartItem ? cartItem.quantity : 0;
+  // Create a selector that is specific to this product's quantity.
+  // This is the key to preventing unnecessary re-renders.
+  const quantity = useCartStore(
+    (state) => state.cart.find((item) => item.id === product.id)?.quantity ?? 0
+  );
 
   // Calculate total price for this item
   const totalPrice = (product.price * quantity).toFixed(2);
@@ -40,9 +40,9 @@ const CartItem = ({ product }) => {
             <Image
               src={product.image}
               alt={product.title}
-              layout="fill"
-              objectFit="contain"
-              className="rounded-md"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="rounded-md object-contain"
             />
           </div>
 

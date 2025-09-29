@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import useCartStore from '@/store/cartStore';
 import { ShoppingCart } from 'lucide-react';
@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-gray-800 text-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold">My Cart</h1>
+        <h1 className="text-2xl font-bold">Cart-App</h1>
         <div className="relative">
           <ShoppingCart className="h-6 w-6" />
           {totalItems > 0 && (
