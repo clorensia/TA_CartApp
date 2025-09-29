@@ -5,7 +5,7 @@ const Footer = () => {
         <p>
           Project Assignment for Skillroom by{' '}
           <a
-            href="https://github.com/clorensia" 
+            href="https://github.com/clorensia"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline underline-offset-4"

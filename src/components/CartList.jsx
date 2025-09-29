@@ -9,9 +9,10 @@ const CartList = () => {
   const fetchProducts = useCartStore((state) => state.fetchProducts);
 
   useEffect(() => {
-    // Fetch products when the component mounts
-    fetchProducts();
-  }, [fetchProducts]);
+    if (products.length === 0) {
+      fetchProducts();
+    }
+  }, [fetchProducts, products.length]);
 
   if (products.length === 0) {
     return <p>Loading products...</p>;
@@ -19,8 +20,14 @@ const CartList = () => {
 
   return (
     <div>
-      {products.map((product) => (
-        <CartItem key={product.id} product={product} />
+      {products.map((product, index) => (
+        <div
+          key={product.id}
+          className="animate-in fade-in slide-in-from-top-4 duration-500"
+          style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'backwards' }}
+        >
+          <CartItem product={product} />
+        </div>
       ))}
     </div>
   );

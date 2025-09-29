@@ -5,7 +5,6 @@ import { ShoppingCart } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const Navbar = () => {
-  // A "selector" to compute derived state (total items)
   const totalItems = useCartStore((state) =>
     state.cart.reduce((total, item) => total + item.quantity, 0)
   );
